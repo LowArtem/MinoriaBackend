@@ -1,15 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace MinoriaBackend.Api.Dto.User;
+namespace MinoriaBackend.Api.Api.ExternalApi.v1.User.Requests;
 
 /// <summary>
 /// Данные для создания пользователя
 /// </summary>
 /// <param name="Email">Электронная почта</param>
 /// <param name="Password">Пароль</param>
-/// <param name="FirstName">Имя</param>
-/// <param name="LastName">Фамилия</param>
-/// <param name="MiddleName">Отчество (при наличии)</param>
+/// <param name="Name">Имя</param>
 public record UserRequestDto
 (
     [Required]
@@ -17,7 +15,5 @@ public record UserRequestDto
     string Email,
 
     [Required] string Password,
-    [Required] string FirstName,
-    [Required] string LastName,
-    string? MiddleName
+    [Required] string Name
 );

@@ -7,9 +7,7 @@ namespace MinoriaBackend.Core.Dto;
 /// </summary>
 /// <param name="Email">Почта</param>
 /// <param name="Password">Пароль</param>
-/// <param name="FirstName">Имя</param>
-/// <param name="MiddleName">Отчество</param>
-/// <param name="LastName">Фамилия</param>
+/// <param name="Name">Имя</param>
 public record RegisterDto
 (
     [Required]
@@ -17,7 +15,5 @@ public record RegisterDto
     string Email,
 
     [Required] string Password,
-    [Required] string FirstName,
-    [Required] string LastName,
-    string? MiddleName
+    [Required] string Name
 );

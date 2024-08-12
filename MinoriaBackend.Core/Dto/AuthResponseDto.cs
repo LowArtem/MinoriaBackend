@@ -5,10 +5,7 @@ namespace MinoriaBackend.Core.Dto;
 /// </summary>
 /// <param name="Email">Почта</param>
 /// <param name="AccessToken">Токен</param>
-/// <param name="Roles">Список ролей пользователя</param>
-public record AuthResponseDto
-(
+public record AuthResponseDto (
     string Email,
-    string AccessToken,
-    List<RoleResponseDto> Roles
+    string AccessToken
 );

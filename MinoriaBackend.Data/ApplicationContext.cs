@@ -20,7 +20,6 @@ public class ApplicationContext : DbContext
 
     #region Auth
 
-    public DbSet<Role> Roles { get; set; }
     public DbSet<User> Users { get; set; }
 
     #endregion

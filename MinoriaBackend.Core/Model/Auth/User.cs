@@ -24,21 +24,5 @@ public class User : BaseEntity
     /// <summary>
     /// Имя
     /// </summary>
-    public string FirstName { get; set; }
-
-    /// <summary>
-    /// Фамилия
-    /// </summary>
-    public string LastName { get; set; }
-
-    /// <summary>
-    /// Отчество
-    /// </summary>
-    public virtual string? MiddleName { get; set; }
-
-    /// <summary>
-    /// Роли пользователя
-    /// </summary>
-    [JsonIgnore]
-    public virtual ICollection<Role> UserRoles { get; set; }
+    public string Name { get; set; }
 }

@@ -88,7 +88,7 @@ public abstract class BaseCrudController<T, TAdd, TResponse> : ControllerBase
     /// <response code="404">Если записи с данным идентификатором не существует</response>   
     [HttpGet("{id:int}")]
     [SwaggerResponse(404, "Запись с таким идентификатором не существует")]
-    public virtual ActionResult<TResponse> Get(int id)
+    public virtual ActionResult<TResponse> Get(Guid id)
     {
         var entity = List.FirstOrDefault(p => p.Id == id);
 
@@ -117,7 +117,7 @@ public abstract class BaseCrudController<T, TAdd, TResponse> : ControllerBase
 
         var created = _repository.GetListQuery().SingleOrDefault(x => x.DateCreate == mapped.DateCreate);
 
-        return created?.Id > 0
+        return created?.Id != null
             ? Ok(_mapper.Map<TResponse>(created))
             : StatusCode(500, "Произошла ошибка при добавлении записи");
     }
@@ -145,7 +145,7 @@ public abstract class BaseCrudController<T, TAdd, TResponse> : ControllerBase
             .Where(x => mapped.Select(m => m.DateCreate).Contains(x.DateCreate))
             .ToList();
 
-        if (created.Count == models.Count && created.All(p => p.Id > 0))
+        if (created.Count == models.Count && created.All(p => p.Id != null))
             return Ok(_mapper.Map<List<TResponse>>(created));
 
         return StatusCode(500, "Произошла ошибка при добавлении записей");
@@ -161,7 +161,7 @@ public abstract class BaseCrudController<T, TAdd, TResponse> : ControllerBase
     [SwaggerResponse(200, "Запись успешно удалена")]
     [SwaggerResponse(404, "Запись не найдена")]
     [SwaggerResponse(500, "Произошла ошибка при удаленнии записи")]
-    public virtual IActionResult RemoveById(int id)
+    public virtual IActionResult RemoveById(Guid id)
     {
         var entity = _repository.Get(id);
         if (entity == null) return NotFound();
@@ -181,7 +181,7 @@ public abstract class BaseCrudController<T, TAdd, TResponse> : ControllerBase
     [SwaggerResponse(200, "Записи успешно удалены")]
     [SwaggerResponse(400, "Не указаны Id записей, которые необходимо удалить")]
     [SwaggerResponse(500, "Произошла ошибка при удалении записей")]
-    public virtual IActionResult RemoveRangeById(List<int> ids)
+    public virtual IActionResult RemoveRangeById(List<Guid?> ids)
     {
         if (ids.Count == 0) return BadRequest();
 

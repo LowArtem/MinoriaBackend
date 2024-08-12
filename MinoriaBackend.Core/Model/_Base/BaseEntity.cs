@@ -19,7 +19,7 @@ public class BaseEntity : IEntity
 
     /// <inheritdoc />
     [Key]
-    public int Id { get; set; }
+    public Guid Id { get; set; }
 
     /// <inheritdoc />
     [ReadOnly(true)]
