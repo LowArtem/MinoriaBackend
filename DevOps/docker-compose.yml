@@ -1,0 +1,48 @@
+version: '3.9'
+services:
+  application_backend:
+    container_name: application_backend
+    hostname: application_backend
+    image: application_backend
+    build:
+      context: ../
+      dockerfile: FinanceManagerBackend.Api/Dockerfile
+    command: dotnet FinanceManagerBackend.Api.dll
+    environment:
+      ASPNETCORE_ENVIRONMENT: 'Production'
+      ASPNETCORE_URLS: 'http://*:5000;'
+    ports:
+      - '3000:5000'
+    working_dir: /app
+    restart: unless-stopped
+    networks:
+      - app
+    labels:
+      org.label-schema.group: 'application'
+
+  seq:
+    container_name: seq
+    image: lowartem/seq
+    ports:
+      - '5341:80'
+    restart: unless-stopped
+    networks:
+      - app
+    labels:
+      org.label-schema.group: 'application'
+
+#  application_nginx:
+#    container_name: application_nginx
+#    restart: always
+#    ports:
+#      - '3002:80'
+#    build:
+#      context: .
+#      dockerfile: Nginx.Dockerfile
+#    networks:
+#      - app
+
+networks:
+  app:
+    name: app
+    external: true
