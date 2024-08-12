@@ -6,8 +6,8 @@ services:
     image: application_backend
     build:
       context: ../
-      dockerfile: FinanceManagerBackend.Api/Dockerfile
-    command: dotnet FinanceManagerBackend.Api.dll
+      dockerfile: MinoriaBackend.Api/Dockerfile
+    command: dotnet MinoriaBackend.Api.dll
     environment:
       ASPNETCORE_ENVIRONMENT: 'Production'
       ASPNETCORE_URLS: 'http://*:5000;'
