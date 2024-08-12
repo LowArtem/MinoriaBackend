@@ -1,7 +1,7 @@
 version: '3.9'
 services:
-  postgres:
-    container_name: postgres
+  minoria_prod:
+    container_name: minoria_prod
     image: postgres:15.0
     command:
       - 'postgres'
@@ -34,9 +34,9 @@ services:
       - '-c'
       - 'pg_stat_statements.track=all'
     environment:
-      POSTGRES_DB: application_db
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: root
+      POSTGRES_DB: minoria_prod
+      POSTGRES_USER: minoria
+      POSTGRES_PASSWORD: IeNfzx5vg
       PGDATA: '/var/lib/postgresql/data/pgdata'
     volumes:
       - ../InitDb:/docker-entrypoint-initdb.d
@@ -44,7 +44,7 @@ services:
     ports:
       - '5432:5432'
     healthcheck:
-      test: ['CMD-SHELL', 'pg_isready -U postgres -d application_db']
+      test: ['CMD-SHELL', 'pg_isready -U minoria -d minoria_prod']
       interval: 10s
       timeout: 5s
       retries: 5
