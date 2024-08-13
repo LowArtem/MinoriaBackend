@@ -1,0 +1,31 @@
+﻿---
+- name: 'Playbook: [Обновление и развертывание приложения]'
+  hosts: all
+  become: no
+
+  vars:
+    REPO: # - Ссылка на репозиторий
+    BRANCH: master # - Ветка для клонирования
+    DEV_OPS_DIR: '/DevOps' # - Путь до папки с DevOps
+    directory: '/app/MinoriaBackend'
+
+  tasks:
+    - block:
+      - name: 'Обновление репозитория'
+        git:
+          repo: "{{ REPO }}"
+          dest: '{{ directory }}/'
+          version: '{{ BRANCH }}'
+          update: yes
+          clone: no
+
+      - name: Сборка основного приложения
+        command: docker compose -f docker-compose.yml up --build -d
+
+      rescue:
+        - name: Логирование ошибки
+          fail:
+            msg: >-
+              Ошибка на этапе развертывания. Результаты:
+              Сборка - {{ result_build_main | default('Не выполнено') }},
+              Запуск - {{ result_up_main | default('Не выполнено') }}

@@ -13,10 +13,15 @@ tasks:
   first_deploy:
     dir: DevOps/playbooks
     cmds:
-      - wsl -d Ubuntu-20.04 bash -c 'cd $PWD && ansible-playbook first_deploy.yml -e REPO="{{ .REPO }}" -e BRANCH="{{ .BRANCH }}"'
+      - wsl -d Ubuntu bash -c 'export ANSIBLE_CONFIG=$PWD/ansible.cfg && cd $PWD && /home/artem/.local/bin/ansible-playbook first_deploy.yml -e REPO="https://github.com/LowArtem/MinoriaBackend.git" -e BRANCH="master"'
 
   deploy:
     dir: DevOps/playbooks
     cmds:
-      - wsl -d Ubuntu-20.04 bash -c 'cd $PWD && ansible-playbook deploy.yml -e REPO="{{ .REPO }}" -e BRANCH="{{ .BRANCH }}"'
+      - wsl -d Ubuntu bash -c 'export ANSIBLE_CONFIG=$PWD/ansible.cfg && cd $PWD && /home/artem/.local/bin/ansible-playbook deploy.yml -e REPO="https://github.com/LowArtem/MinoriaBackend.git" -e BRANCH="master"'
+        
+  update:
+    dir: DevOps/playbooks
+    cmds:
+      - wsl -d Ubuntu bash -c 'export ANSIBLE_CONFIG=$PWD/ansible.cfg && cd $PWD && /home/artem/.local/bin/ansible-playbook update.yml -e REPO="https://github.com/LowArtem/MinoriaBackend.git" -e BRANCH="master"'
       
