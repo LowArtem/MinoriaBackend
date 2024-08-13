@@ -367,4 +367,5 @@ FodyWeavers.xsd
 
 # Custom files
 /MinoriaBackend/pgdata/*
+/DevOps/pgdata/*
 /MinoriaBackend/.idea/.idea.MinoriaBackend/.idea/workspace.xml
