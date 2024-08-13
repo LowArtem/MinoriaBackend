@@ -12,15 +12,14 @@
   tasks:
     - block:
       - name: 'Обновление репозитория'
-        git:
-          repo: "{{ REPO }}"
-          dest: '{{ directory }}/'
-          version: '{{ BRANCH }}'
-          update: yes
-          clone: no
+        command: git pull
+        args:
+          chdir: '{{ directory }}'
 
       - name: Сборка основного приложения
         command: docker compose -f docker-compose.yml up --build -d
+        args:
+          chdir: '{{ directory }}{{ DEV_OPS_DIR }}'
 
       rescue:
         - name: Логирование ошибки
