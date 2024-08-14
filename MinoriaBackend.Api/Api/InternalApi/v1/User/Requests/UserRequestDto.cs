@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace MinoriaBackend.Api.Api.ExternalApi.v1.User.Requests;
+namespace MinoriaBackend.Api.Api.InternalApi.v1.User.Requests;
 
 /// <summary>
 /// Данные для создания пользователя

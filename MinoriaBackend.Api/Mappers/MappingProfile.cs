@@ -1,7 +1,7 @@
 using MinoriaBackend.Core.Model.Auth;
 using AutoMapper;
-using MinoriaBackend.Api.Api.ExternalApi.v1.User.Requests;
-using MinoriaBackend.Api.Api.ExternalApi.v1.User.Responses;
+using MinoriaBackend.Api.Api.InternalApi.v1.User.Requests;
+using MinoriaBackend.Api.Api.InternalApi.v1.User.Responses;
 using MinoriaBackend.Core.Extensions;
 
 namespace MinoriaBackend.Api.Mappers;

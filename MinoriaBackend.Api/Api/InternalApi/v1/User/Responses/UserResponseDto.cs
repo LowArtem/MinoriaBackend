@@ -1,4 +1,4 @@
-﻿namespace MinoriaBackend.Api.Api.ExternalApi.v1.User.Responses;
+﻿namespace MinoriaBackend.Api.Api.InternalApi.v1.User.Responses;
 
 /// <summary>
 /// Информация о пользователе

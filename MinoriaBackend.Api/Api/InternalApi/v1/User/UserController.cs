@@ -1,22 +1,20 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MinoriaBackend.Api.Api._Base;
-using MinoriaBackend.Api.Api.ExternalApi.v1.User.Requests;
-using MinoriaBackend.Api.Api.ExternalApi.v1.User.Responses;
+using MinoriaBackend.Api.Api.InternalApi.v1.User.Requests;
+using MinoriaBackend.Api.Api.InternalApi.v1.User.Responses;
 using MinoriaBackend.Api.Attributes;
 using MinoriaBackend.Core.Repositories;
 using Swashbuckle.AspNetCore.Annotations;
 
-namespace MinoriaBackend.Api.Api.ExternalApi.v1.User;
+namespace MinoriaBackend.Api.Api.InternalApi.v1.User;
 
 /// <summary>
-/// Контроллер управления пользователями
+/// [Internal] Контроллер для ручного управления пользователями
 /// </summary>
 [ApiController]
 [ApiVersion("1.0")]
 [SetRoute]
-[Authorize]
 public class UserController : BaseCrudController<Core.Model.Auth.User, UserRequestDto, UserResponseDto>
 {
     /// <inheritdoc />
