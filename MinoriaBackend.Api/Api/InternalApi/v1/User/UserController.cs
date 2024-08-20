@@ -15,10 +15,10 @@ namespace MinoriaBackend.Api.Api.InternalApi.v1.User;
 [ApiController]
 [ApiVersion("1.0")]
 [SetRoute]
-public class UserController : BaseCrudController<Core.Model.Auth.User, UserRequestDto, UserResponseDto>
+public class UserController : BaseCrudController<Core.Model.User, UserRequestDto, UserResponseDto>
 {
     /// <inheritdoc />
-    public UserController(IEfCoreRepository<Core.Model.Auth.User> repository,
+    public UserController(IEfCoreRepository<Core.Model.User> repository,
         ILogger<UserController> logger, IMapper mapper) :
         base(repository, logger, mapper)
     {

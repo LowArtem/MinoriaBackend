@@ -1,12 +1,12 @@
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MinoriaBackend.Api.Attributes;
 using MinoriaBackend.Core.Dto;
 using MinoriaBackend.Core.Exceptions;
 using MinoriaBackend.Data.Services;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
-namespace MinoriaBackend.Api.Api.Auth;
+namespace MinoriaBackend.Api.Api.ExternalApi.v1.Auth;
 
 /// <summary>
 /// Авторизация

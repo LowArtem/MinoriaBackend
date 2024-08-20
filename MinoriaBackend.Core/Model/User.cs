@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 using MinoriaBackend.Core.Model._Base;
 
-namespace MinoriaBackend.Core.Model.Auth;
+namespace MinoriaBackend.Core.Model;
 
 /// <summary>
 /// Пользователь

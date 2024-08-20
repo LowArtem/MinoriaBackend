@@ -10,6 +10,7 @@ using AutoMapper;
 using MinoriaBackend.Core.Configurations;
 using MinoriaBackend.Core.Exceptions;
 using Microsoft.IdentityModel.Tokens;
+using MinoriaBackend.Core.Model;
 
 namespace MinoriaBackend.Data.Services;
 

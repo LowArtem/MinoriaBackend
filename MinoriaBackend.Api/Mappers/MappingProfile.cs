@@ -3,6 +3,7 @@ using AutoMapper;
 using MinoriaBackend.Api.Api.InternalApi.v1.User.Requests;
 using MinoriaBackend.Api.Api.InternalApi.v1.User.Responses;
 using MinoriaBackend.Core.Extensions;
+using MinoriaBackend.Core.Model;
 
 namespace MinoriaBackend.Api.Mappers;
 

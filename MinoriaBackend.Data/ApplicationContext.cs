@@ -1,5 +1,6 @@
 using MinoriaBackend.Core.Model.Auth;
 using Microsoft.EntityFrameworkCore;
+using MinoriaBackend.Core.Model;
 
 namespace MinoriaBackend.Data;
 
