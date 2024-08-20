@@ -25,4 +25,9 @@ public class User : BaseEntity
     /// Имя
     /// </summary>
     public string Name { get; set; }
+    
+    /// <summary>
+    /// Id телеграм чата
+    /// </summary>
+    public string? TelegramChatId { get; set; }
 }

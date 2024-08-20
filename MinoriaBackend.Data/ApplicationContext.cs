@@ -27,6 +27,14 @@ public class ApplicationContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        #region User constraints
+
+        modelBuilder.Entity<User>()
+            .HasIndex(u => u.Email)
+            .IsUnique();
+
+        #endregion
+        
         base.OnModelCreating(modelBuilder);
     }
 }
