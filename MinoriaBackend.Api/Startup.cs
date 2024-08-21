@@ -6,6 +6,7 @@ using AutoMapper;
 using Hangfire;
 using Hangfire.PostgreSql;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
+using MinoriaBackend.Api.Services.ImageStoringService;
 using Prometheus;
 using Serilog;
 
@@ -45,6 +46,7 @@ public class Startup
 
         // Services can be added here
         services.AddTransient(typeof(UserService), typeof(UserService));
+        services.AddTransient(typeof(IImageStoringService), typeof(MinioService));
 
 
         // Auto Mapper Configurations

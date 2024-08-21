@@ -4,7 +4,6 @@ using MinoriaBackend.Api.Configurations.Swagger;
 using MinoriaBackend.Api.Metrics;
 using MinoriaBackend.Api.Redis;
 using MinoriaBackend.Api.Services.Auth;
-using MinoriaBackend.Core.Configurations;
 using MinoriaBackend.Core.Model.Auth;
 using MinoriaBackend.Core.Repositories;
 using MinoriaBackend.Data;
@@ -14,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Minio.AspNetCore;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
@@ -63,6 +63,9 @@ public static class ServiceCollectionExtensions
         
         // Redis caching
         services.AddRedis(configuration);
+        
+        // Minio
+        services.AddMinio(configuration);
     }
 
     /// <summary>
@@ -234,6 +237,26 @@ public static class ServiceCollectionExtensions
         services.AddHealthChecks()
             .AddCheck<ApplicationHealthCheck>(nameof(ApplicationHealthCheck))
             .ForwardToPrometheus();
+    }
+
+    /// <summary>
+    /// Внедрение модуля Minio (объектное хранилище)
+    /// </summary>
+    /// <param name="services"></param>
+    /// <param name="configuration"></param>
+    /// <exception cref="ArgumentNullException"></exception>
+    public static void AddMinio(this IServiceCollection services, IConfiguration configuration)
+    {
+        var accessKey = configuration["Minio:AccessKey"];
+        var secretKey = configuration["Minio:SecretKey"];
+        var endpoint = configuration["Minio:Endpoint"];
+
+        services.AddMinio(options =>
+        {
+            options.AccessKey = accessKey ?? throw new ArgumentNullException(nameof(accessKey));
+            options.SecretKey = secretKey ?? throw new ArgumentNullException(nameof(secretKey));
+            options.Endpoint = endpoint ?? throw new ArgumentNullException(nameof(endpoint));
+        });
     }
         
 
