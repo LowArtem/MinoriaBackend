@@ -4,6 +4,7 @@ using MinoriaBackend.Api.Attributes;
 using MinoriaBackend.Core.Dto;
 using MinoriaBackend.Core.Exceptions;
 using MinoriaBackend.Data.Services;
+using MinoriaBackend.Data.Services.Auth;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace MinoriaBackend.Api.Api.ExternalApi.v1.Auth;

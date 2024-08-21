@@ -1,19 +1,17 @@
-using System.Security.Claims;
-using MinoriaBackend.Core.Dto;
-using MinoriaBackend.Core.Extensions;
-using MinoriaBackend.Core.Model.Auth;
-using MinoriaBackend.Core.Repositories;
-using Microsoft.EntityFrameworkCore;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Authentication;
+using System.Security.Claims;
 using AutoMapper;
-using MinoriaBackend.Core.Configurations;
-using MinoriaBackend.Core.Exceptions;
 using Microsoft.IdentityModel.Tokens;
+using MinoriaBackend.Core.Dto;
 using MinoriaBackend.Core.Enum;
+using MinoriaBackend.Core.Exceptions;
+using MinoriaBackend.Core.Extensions;
 using MinoriaBackend.Core.Model;
+using MinoriaBackend.Core.Model.Auth;
+using MinoriaBackend.Core.Repositories;
 
-namespace MinoriaBackend.Data.Services;
+namespace MinoriaBackend.Data.Services.Auth;
 
 public class UserService
 {

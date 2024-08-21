@@ -1,12 +1,12 @@
 using MinoriaBackend.Api.Configurations.Hangfire;
 using MinoriaBackend.Api.Extensions.Application;
 using MinoriaBackend.Api.Mappers;
-using MinoriaBackend.Data.Services;
 using AutoMapper;
 using Hangfire;
 using Hangfire.PostgreSql;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using MinoriaBackend.Api.Services.ImageStoringService;
+using MinoriaBackend.Data.Services.Auth;
 using Prometheus;
 using Serilog;
 
