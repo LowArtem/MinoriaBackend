@@ -12,6 +12,9 @@ using MinoriaBackend.Core.Repositories;
 
 namespace MinoriaBackend.Data.Services.Auth;
 
+/// <summary>
+/// Cервис для работы с пользователями
+/// </summary>
 public class UserService
 {
     private readonly IEfCoreRepository<User> _userRepository;
