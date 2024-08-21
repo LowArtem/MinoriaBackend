@@ -2,6 +2,7 @@ using MinoriaBackend.Api.Configurations.Hangfire;
 using MinoriaBackend.Api.Extensions.Application;
 using MinoriaBackend.Api.Mappers;
 using AutoMapper;
+using FluentValidation;
 using Hangfire;
 using Hangfire.PostgreSql;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
@@ -48,10 +49,11 @@ public class Startup
         services.AddTransient(typeof(UserService), typeof(UserService));
         services.AddTransient(typeof(IImageStoringService), typeof(MinioService));
 
+        // Fluent Validation configurations
+        services.AddValidatorsFromAssemblyContaining<Startup>();
 
         // Auto Mapper Configurations
         var mapperConfig = new MapperConfiguration(mc => { mc.AddProfile(new MappingProfile()); });
-
         var mapper = mapperConfig.CreateMapper();
         services.AddSingleton(mapper);
     }
