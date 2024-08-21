@@ -1,6 +1,7 @@
 using MinoriaBackend.Core.Model.Auth;
 using Microsoft.EntityFrameworkCore;
 using MinoriaBackend.Core.Model;
+using MinoriaBackend.Core.Model.Accounts;
 
 namespace MinoriaBackend.Data;
 
@@ -19,11 +20,13 @@ public class ApplicationContext : DbContext
     {
     }
 
-    #region Auth
-
     public DbSet<User> Users { get; set; }
-
-    #endregion
+    public DbSet<Category> Categories { get; set; }
+    public DbSet<BaseAccount> BaseAccounts { get; set; }
+    public DbSet<Account> Accounts { get; set; }
+    public DbSet<VirtualAccount> VirtualAccounts { get; set; }
+    public DbSet<Transaction> Transactions { get; set; }
+    
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -33,6 +36,15 @@ public class ApplicationContext : DbContext
             .HasIndex(u => u.Email)
             .IsUnique();
 
+        #endregion
+
+        #region Account constraints
+
+        modelBuilder.Entity<BaseAccount>()
+            .HasDiscriminator<string>("AccountVariant")
+            .HasValue<Account>("Account")
+            .HasValue<VirtualAccount>("VirtualAccount");
+        
         #endregion
         
         base.OnModelCreating(modelBuilder);

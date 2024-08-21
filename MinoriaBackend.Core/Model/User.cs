@@ -1,6 +1,7 @@
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
 using MinoriaBackend.Core.Model._Base;
+using MinoriaBackend.Core.Model.Accounts;
 
 namespace MinoriaBackend.Core.Model;
 
@@ -25,9 +26,25 @@ public class User : BaseEntity
     /// Имя
     /// </summary>
     public string Name { get; set; }
-    
+
     /// <summary>
     /// Id телеграм чата
     /// </summary>
-    public string? TelegramChatId { get; set; }
+    public string? TelegramChatId { get; set; } = null;
+
+    #region Связи
+
+    /// <summary>
+    /// Список счетов пользователя
+    /// </summary>
+    [JsonIgnore]
+    public virtual List<BaseAccount> Accounts { get; set; }
+    
+    /// <summary>
+    /// Список транзакций пользователя
+    /// </summary>
+    [JsonIgnore]
+    public virtual List<Transaction> Transactions { get; set; }
+
+    #endregion
 }
