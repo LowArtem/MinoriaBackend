@@ -10,6 +10,7 @@ using AutoMapper;
 using MinoriaBackend.Core.Configurations;
 using MinoriaBackend.Core.Exceptions;
 using Microsoft.IdentityModel.Tokens;
+using MinoriaBackend.Core.Enum;
 using MinoriaBackend.Core.Model;
 
 namespace MinoriaBackend.Data.Services;
@@ -106,11 +107,11 @@ public class UserService
         // Параметры токена
         var claims = new List<Claim>
         {
-            new Claim(ClaimsIdentity.DefaultNameClaimType, user.Email),
-            new Claim("id", user.Id.ToString())
+            new Claim(ApplicationJwtClaimTypes.Email, user.Email),
+            new Claim(ApplicationJwtClaimTypes.Id, user.Id.ToString())
         };
 
-        var claimsIdentity = new ClaimsIdentity(claims, "Token", ClaimsIdentity.DefaultNameClaimType, "Role");
+        var claimsIdentity = new ClaimsIdentity(claims, "Token", ApplicationJwtClaimTypes.Email, "Role");
 
         return claimsIdentity;
     }
