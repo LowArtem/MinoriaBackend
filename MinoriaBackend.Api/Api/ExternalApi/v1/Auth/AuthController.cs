@@ -1,9 +1,8 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MinoriaBackend.Api.Attributes;
-using MinoriaBackend.Core.Dto;
+using MinoriaBackend.Core.Dto.Auth;
 using MinoriaBackend.Core.Exceptions;
-using MinoriaBackend.Data.Services;
 using MinoriaBackend.Data.Services.Auth;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -49,19 +48,19 @@ public class AuthController : ControllerBase
     /// <summary>
     /// Зарегистрировать нового пользователя
     /// </summary>
-    /// <param name="registerDto">данные регистрации</param>
+    /// <param name="registerRequest">данные регистрации</param>
     /// <returns>логин и токен пользователя</returns>
     [HttpPost("register")]
     [AllowAnonymous]
-    [SwaggerResponse(200, "Пользователь успешно зарегистрирован", typeof(AuthResponseDto))]
+    [SwaggerResponse(200, "Пользователь успешно зарегистрирован", typeof(AuthResponse))]
     [SwaggerResponse(400, "Неверный формат данных")]
     [SwaggerResponse(409, "Пользователь с таким email уже существует", typeof(string))]
     [SwaggerResponse(500, "Ошибка при регистрации пользователя", typeof(string))]
-    public IActionResult Register(RegisterDto registerDto)
+    public IActionResult Register(RegisterRequest registerRequest)
     {
         try
         {
-            return Ok(_service.RegisterUser(registerDto));
+            return Ok(_service.RegisterUser(registerRequest));
         }
         catch (EntityExistsException)
         {
@@ -77,19 +76,19 @@ public class AuthController : ControllerBase
     /// <summary>
     /// Вход для зарегистрированного пользователя
     /// </summary>
-    /// <param name="loginDto">данные для входа</param>
+    /// <param name="loginRequest">данные для входа</param>
     /// <returns>логин и токен пользователя</returns>
     [HttpPost("login")]
     [AllowAnonymous]
-    [SwaggerResponse(200, "Пользователь успешно залогинен", typeof(AuthResponseDto))]
+    [SwaggerResponse(200, "Пользователь успешно залогинен", typeof(AuthResponse))]
     [SwaggerResponse(400, "Неверный формат данных")]
     [SwaggerResponse(404, "Пользователь с таким email не существует", typeof(string))]
     [SwaggerResponse(500, "Ошибка при логине пользователя", typeof(string))]
-    public IActionResult Login(LoginDto loginDto)
+    public IActionResult Login(LoginRequest loginRequest)
     {
         try
         {
-            return Ok(_service.LoginUser(loginDto));
+            return Ok(_service.LoginUser(loginRequest));
         }
         catch (EntityNotFoundException)
         {

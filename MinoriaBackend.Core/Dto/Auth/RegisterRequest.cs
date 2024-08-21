@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace MinoriaBackend.Core.Dto;
+namespace MinoriaBackend.Core.Dto.Auth;
 
 /// <summary>
 ///  Данные для регистрации пользователяы
@@ -8,7 +8,7 @@ namespace MinoriaBackend.Core.Dto;
 /// <param name="Email">Почта</param>
 /// <param name="Password">Пароль</param>
 /// <param name="Name">Имя</param>
-public record RegisterDto
+public record RegisterRequest
 (
     [Required]
     [EmailAddress(ErrorMessage = "Invalid email address")]

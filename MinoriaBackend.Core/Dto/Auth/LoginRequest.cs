@@ -1,13 +1,13 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace MinoriaBackend.Core.Dto;
+namespace MinoriaBackend.Core.Dto.Auth;
 
 /// <summary>
 /// Данные для входа пользователя
 /// </summary>
 /// <param name="Email">Почта</param>
 /// <param name="Password">Пароль</param>
-public record LoginDto
+public record LoginRequest
 (
     [Required]
     [EmailAddress(ErrorMessage = "Invalid email address")]

@@ -34,6 +34,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <Folder Include="Dto\" />
       <Folder Include="Mappers\" />
       <Folder Include="Migrations\" />
       <Folder Include="Model\" />

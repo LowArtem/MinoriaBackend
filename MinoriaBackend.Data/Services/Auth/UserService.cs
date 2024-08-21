@@ -1,9 +1,8 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Authentication;
 using System.Security.Claims;
-using AutoMapper;
 using Microsoft.IdentityModel.Tokens;
-using MinoriaBackend.Core.Dto;
+using MinoriaBackend.Core.Dto.Auth;
 using MinoriaBackend.Core.Enum;
 using MinoriaBackend.Core.Exceptions;
 using MinoriaBackend.Core.Extensions;
@@ -17,46 +16,44 @@ public class UserService
 {
     private readonly IEfCoreRepository<User> _userRepository;
     private readonly IJwtService _jwtService;
-    private readonly IMapper _mapper;
 
-    public UserService(IEfCoreRepository<User> userRepository, IMapper mapper, IJwtService jwtService)
+    public UserService(IEfCoreRepository<User> userRepository, IJwtService jwtService)
     {
         _userRepository = userRepository;
-        _mapper = mapper;
         _jwtService = jwtService;
     }
 
     /// <summary>
     /// Зарегистрировать нового пользователя
     /// </summary>
-    /// <param name="registerDto">данные для регистрации</param>
+    /// <param name="registerRequest">данные для регистрации</param>
     /// <returns></returns>
     /// <exception cref="EntityExistsException">если пользователь с таким email уже существует</exception>
     /// <exception cref="ApplicationException">ошибка при создании пользователя</exception>
-    public AuthResponseDto RegisterUser(RegisterDto registerDto)
+    public AuthResponse RegisterUser(RegisterRequest registerRequest)
     {
-        if (_userRepository.Any(u => u.Email == registerDto.Email))
-            throw new EntityExistsException(typeof(User), registerDto.Email);
+        if (_userRepository.Any(u => u.Email == registerRequest.Email))
+            throw new EntityExistsException(typeof(User), registerRequest.Email);
 
-        var passwordHash = registerDto.Password.Hash();
+        var passwordHash = registerRequest.Password.Hash();
 
         var user = new User
         {
-            Email = registerDto.Email,
+            Email = registerRequest.Email,
             PasswordHash = passwordHash,
-            Name = registerDto.Name
+            Name = registerRequest.Name
         };
 
         _userRepository.Add(user);
         _userRepository.SaveChanges();
 
-        var token = GetToken(user.Email, registerDto.Password);
+        var token = GetToken(user.Email, registerRequest.Password);
         if (token == null)
         {
             throw new ApplicationException("Error while creating a user");
         }
 
-        return new AuthResponseDto(
+        return new AuthResponse(
             Email: user.Email,
             AccessToken: token
         );
@@ -65,28 +62,28 @@ public class UserService
     /// <summary>
     /// Предоставить доступ для зарегистрированного пользователя
     /// </summary>
-    /// <param name="loginDto">данные для входа</param>
+    /// <param name="loginRequest">данные для входа</param>
     /// <returns></returns>
     /// <exception cref="EntityNotFoundException">если пользователя с таким email не существует</exception>
     /// <exception cref="AuthenticationException">неверные данные авторизации</exception>
-    public AuthResponseDto LoginUser(LoginDto loginDto)
+    public AuthResponse LoginUser(LoginRequest loginRequest)
     {
         var user = _userRepository.GetListQuery()
-            .FirstOrDefault(u => u.Email == loginDto.Email);
+            .FirstOrDefault(u => u.Email == loginRequest.Email);
 
         if (user == null)
         {
-            throw new EntityNotFoundException(typeof(User), loginDto.Email);
+            throw new EntityNotFoundException(typeof(User), loginRequest.Email);
         }
 
-        if (loginDto.Password.Hash() != user.PasswordHash)
+        if (loginRequest.Password.Hash() != user.PasswordHash)
         {
             throw new AuthenticationException("Wrong password");
         }
 
-        return new AuthResponseDto(
+        return new AuthResponse(
             Email: user.Email,
-            AccessToken: GetToken(loginDto.Email, loginDto.Password)!
+            AccessToken: GetToken(loginRequest.Email, loginRequest.Password)!
         );
     }
 
