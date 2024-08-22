@@ -15,7 +15,7 @@ namespace MinoriaBackend.Api.Api.ExternalApi.v1.TransactionHistory;
 /// </summary>
 [ApiController]
 [ApiVersion("1.0")]
-[SetRoute]
+[SetRoute("transactions")]
 [Authorize]
 public class TransactionHistoryController : ControllerBase
 {
@@ -36,7 +36,7 @@ public class TransactionHistoryController : ControllerBase
     /// <param name="request">запрос</param>
     /// <param name="token">токен отмены</param>
     /// <returns>список транзакций пользователя</returns>
-    [HttpGet("transactions")]
+    [HttpGet("")]
     [SwaggerResponse(200, "История транзакций", typeof(TransactionHistoryResponse))]
     [SwaggerResponse(400, "Неверные параметры запроса", typeof(List<ValidationFailure>))]
     [SwaggerResponse(401, "Ошибка авторизации")]
