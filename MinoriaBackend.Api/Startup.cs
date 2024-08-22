@@ -8,6 +8,7 @@ using Hangfire.PostgreSql;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using MinoriaBackend.Api.Services.ImageStoringService;
 using MinoriaBackend.Data.Services.Auth;
+using MinoriaBackend.Data.Services.TransactionHistory;
 using Prometheus;
 using Serilog;
 
@@ -48,6 +49,7 @@ public class Startup
         // Services can be added here
         services.AddTransient(typeof(UserService), typeof(UserService));
         services.AddTransient(typeof(IImageStoringService), typeof(MinioService));
+        services.AddTransient(typeof(TransactionHistoryService), typeof(TransactionHistoryService));
 
         // Fluent Validation configurations
         services.AddValidatorsFromAssemblyContaining<Startup>();
