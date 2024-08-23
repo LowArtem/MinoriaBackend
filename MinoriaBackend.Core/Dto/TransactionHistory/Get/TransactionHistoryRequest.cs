@@ -10,6 +10,7 @@ namespace MinoriaBackend.Core.Dto.TransactionHistory.Get;
 /// <param name="DateFrom">Фильтр по дате начала</param>
 /// <param name="DateTo">Фильтр по дате окончания</param>
 /// <param name="TransactionType">Фильтр по типу транзакции</param>
+/// <param name="TransactionStatus">Фильтр по статусу транзакции</param>
 /// <param name="CategoryId">Фильтр по категории</param>
 /// <param name="AccountId">Фильтр по счёту</param>
 public record TransactionHistoryRequest(
@@ -18,6 +19,7 @@ public record TransactionHistoryRequest(
     DateTime? DateFrom = null,
     DateTime? DateTo = null,
     TransactionTypeEnum? TransactionType = null,
+    TransactionStatus? TransactionStatus = null,
     Guid? CategoryId = null,
     Guid? AccountId = null
 );

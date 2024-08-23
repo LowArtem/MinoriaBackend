@@ -16,5 +16,6 @@ public class TransactionHistoryRequestValidator : AbstractValidator<TransactionH
         RuleFor(x => x.From).GreaterThanOrEqualTo(0);
         RuleFor(x => x.DateFrom).LessThanOrEqualTo(x => x.DateTo).When(x => x.DateFrom != null && x.DateTo != null);
         RuleFor(x => x.TransactionType).IsInEnum().When(x => x.TransactionType != null);
+        RuleFor(x => x.TransactionStatus).IsInEnum().When(x => x.TransactionStatus != null);
     }
 }

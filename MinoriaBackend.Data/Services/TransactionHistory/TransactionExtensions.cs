@@ -23,6 +23,7 @@ public static class TransactionExtensions
             transaction.Fee,
             transaction.Category.ToCategoryResponse(),
             transaction.TransactionType,
+            transaction.TransactionStatus,
             transaction.Description,
             transaction.Place,
             transaction.Date,

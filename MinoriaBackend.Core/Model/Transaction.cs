@@ -25,6 +25,11 @@ public class Transaction : BaseEntity
     /// Тип транзакции
     /// </summary>
     public TransactionTypeEnum TransactionType { get; set; } = TransactionTypeEnum.EXPENSE;
+
+    /// <summary>
+    /// Текущий статус транзакции
+    /// </summary>
+    public TransactionStatus TransactionStatus { get; set; } = TransactionStatus.NOT_STARTED;
     
     /// <summary>
     /// Описание транзакции
