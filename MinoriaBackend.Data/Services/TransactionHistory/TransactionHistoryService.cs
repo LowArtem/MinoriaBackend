@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MinoriaBackend.Core.Dto.TransactionHistory;
+using MinoriaBackend.Core.Dto.TransactionHistory.Get;
 using MinoriaBackend.Core.Model;
 using MinoriaBackend.Core.Repositories;
 

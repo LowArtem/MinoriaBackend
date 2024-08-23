@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using MinoriaBackend.Core.Dto.TransactionHistory;
+using MinoriaBackend.Core.Dto.TransactionHistory.Get;
 
 namespace MinoriaBackend.Api.Validators;
 

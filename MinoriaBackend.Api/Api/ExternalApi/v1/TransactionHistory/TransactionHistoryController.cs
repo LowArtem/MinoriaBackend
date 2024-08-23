@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using MinoriaBackend.Api.Attributes;
 using MinoriaBackend.Api.Extensions.Api;
 using MinoriaBackend.Core.Dto.TransactionHistory;
+using MinoriaBackend.Core.Dto.TransactionHistory.Get;
 using MinoriaBackend.Data.Services.TransactionHistory;
 using Swashbuckle.AspNetCore.Annotations;
 

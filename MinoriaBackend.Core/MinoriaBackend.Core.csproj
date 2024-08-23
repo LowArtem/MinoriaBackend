@@ -8,6 +8,7 @@
 
     <ItemGroup>
       <Folder Include="Api\" />
+      <Folder Include="Dto\TransactionHistory\Update\" />
       <Folder Include="Helpers\" />
     </ItemGroup>
 

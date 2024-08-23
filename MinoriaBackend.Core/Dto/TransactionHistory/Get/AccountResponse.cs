@@ -1,4 +1,4 @@
-﻿namespace MinoriaBackend.Core.Dto.TransactionHistory;
+﻿namespace MinoriaBackend.Core.Dto.TransactionHistory.Get;
 
 /// <summary>
 /// Ответ для счёта
