@@ -37,7 +37,6 @@ public class TransactionHistoryService
             .Where(x => request.DateFrom == null || x.Date >= request.DateFrom)
             .Where(x => request.DateTo == null || x.Date <= request.DateTo)
             .Where(x => request.TransactionType == null || x.TransactionType == request.TransactionType)
-            .Where(x => request.TransactionStatus == null || x.TransactionStatus == request.TransactionStatus)
             .Where(x => request.CategoryId == null || x.CategoryId == request.CategoryId)
             .Where(x => request.AccountId == null || x.AccountId == request.AccountId);
 
