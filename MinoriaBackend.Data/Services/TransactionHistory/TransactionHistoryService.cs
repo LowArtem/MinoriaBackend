@@ -38,7 +38,8 @@ public class TransactionHistoryService
             .Where(x => request.DateTo == null || x.Date <= request.DateTo)
             .Where(x => request.TransactionType == null || x.TransactionType == request.TransactionType)
             .Where(x => request.CategoryId == null || x.CategoryId == request.CategoryId)
-            .Where(x => request.AccountId == null || x.AccountId == request.AccountId);
+            .Where(x => request.AccountId == null || x.AccountId == request.AccountId)
+            .Where(x => x.TransactionStatus == TransactionStatus.COMPLETED);
 
         // Запрос для подсчета общего количества подходящих сущностей
         var totalCount = await query.CountAsync(cancellationToken: token);
