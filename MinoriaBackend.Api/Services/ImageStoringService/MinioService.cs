@@ -120,21 +120,13 @@ public class MinioService : IImageStoringService
     }
 
     /// <inheritdoc />
-    public string? GetImageUrl(string path)
+    public string GetImageUrl(string path)
     {
-        try
-        {
-            // Разделяем путь на bucket и имя объекта
-            var (userId, imageSet, objectName) = ParsePath(path);
+        // Разделяем путь на bucket и имя объекта
+        var (userId, imageSet, objectName) = ParsePath(path);
 
-            // Формируем URL для доступа к объекту
-            return $"{_minioClient.Config.Endpoint}/{userId.ToString()}/{imageSet}/{objectName}";
-        }
-        catch (Exception e)
-        {
-            _logger.LogError(e, "Failed to generate image URL");
-            return null;
-        }
+        // Формируем URL для доступа к объекту
+        return $"{_minioClient.Config.Endpoint}/{userId.ToString()}/{imageSet}/{objectName}";
     }
     
     /// <summary>

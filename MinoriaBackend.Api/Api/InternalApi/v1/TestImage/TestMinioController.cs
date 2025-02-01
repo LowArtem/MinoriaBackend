@@ -61,11 +61,15 @@ public class TestMinioController : ControllerBase
     [SwaggerResponse(404, "Изображение не найдено")]
     public IActionResult GetImageUrl(string path)
     {
-        var url = _imageStoringService.GetImageUrl(path);
-        if (url == null)
+        try
+        {
+            var url = _imageStoringService.GetImageUrl(path);
+            return Ok(url);
+        }
+        catch (Exception)
+        {
             return NotFound();
-        
-        return Ok(url);
+        }        
     }
     
     /// <summary>

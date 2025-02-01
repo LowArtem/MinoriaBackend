@@ -28,5 +28,5 @@ public interface IImageStoringService
     /// </summary>
     /// <param name="path">путь к изображению (bucket/object)</param>
     /// <returns>ссылку на изображение (null если не удалось получить)</returns>
-    public string? GetImageUrl(string path);
+    public string GetImageUrl(string path);
 }
