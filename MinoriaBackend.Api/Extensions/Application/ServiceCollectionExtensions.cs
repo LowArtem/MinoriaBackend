@@ -268,5 +268,6 @@ public static class ServiceCollectionExtensions
     {
         // Repositories
         services.AddTransient(typeof(IEfCoreRepository<>), typeof(ApplicationRepository<>));
+        services.AddTransient(typeof(IUnitOfWork), typeof(ApplicationUnitOfWork));
     }
 }
