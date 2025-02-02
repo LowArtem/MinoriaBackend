@@ -24,7 +24,7 @@ public class Transaction : BaseEntity
     /// <summary>
     /// Тип транзакции
     /// </summary>
-    public TransactionTypeEnum TransactionType { get; set; } = TransactionTypeEnum.EXPENSE;
+    public TransactionTypeEnum TransactionType { get; set; } = TransactionTypeEnum.INCOME_EXPENSE;
 
     /// <summary>
     /// Текущий статус транзакции
@@ -98,4 +98,13 @@ public class Transaction : BaseEntity
     public virtual BaseAccount? TransferTo { get; set; }
 
     #endregion
+
+    /// <summary>
+    /// Получить поверхностную копию транзакции
+    /// </summary>
+    /// <returns>поверхностная копия транзакции</returns>
+    public Transaction Clone()
+    {
+        return (Transaction)MemberwiseClone();
+    }
 }

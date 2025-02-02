@@ -6,14 +6,9 @@
 public enum TransactionTypeEnum
 {
     /// <summary>
-    /// Доход
+    /// Доход/Расход
     /// </summary>
-    INCOME,
-    
-    /// <summary>
-    /// Расход
-    /// </summary>
-    EXPENSE,
+    INCOME_EXPENSE,
     
     /// <summary>
     /// Перевод

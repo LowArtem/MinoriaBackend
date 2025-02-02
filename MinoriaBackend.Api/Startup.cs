@@ -1,14 +1,16 @@
 using MinoriaBackend.Api.Configurations.Hangfire;
 using MinoriaBackend.Api.Extensions.Application;
-using MinoriaBackend.Api.Mappers;
 using AutoMapper;
 using FluentValidation;
 using Hangfire;
 using Hangfire.PostgreSql;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using MinoriaBackend.Api.Services.ImageStoringService;
+using MinoriaBackend.Core.Services.Transaction;
 using MinoriaBackend.Data.Services.Auth;
 using MinoriaBackend.Data.Services.TransactionHistory;
+using MinoriaBackend.Data.Services.TransactionService;
+using MinoriaBackend.Data.Services.TransactionService.Strategies;
 using Prometheus;
 using Serilog;
 
@@ -49,13 +51,24 @@ public class Startup
         // Services can be added here
         services.AddTransient(typeof(UserService), typeof(UserService));
         services.AddTransient(typeof(IImageStoringService), typeof(MinioService));
+        
+        services.AddScoped<IncomeSpendingTransactionStrategy>();
+        services.AddScoped<TransferTransactionStrategy>();
+        services.AddScoped<ReservationTransactionStrategy>();
+        services.AddScoped<ITransactionStrategyFactory, TransactionStrategyFactory>();
+        
+        services.AddTransient(typeof(TransactionService), typeof(TransactionService));
         services.AddTransient(typeof(TransactionHistoryService), typeof(TransactionHistoryService));
 
         // Fluent Validation configurations
         services.AddValidatorsFromAssemblyContaining<Startup>();
 
         // Auto Mapper Configurations
-        var mapperConfig = new MapperConfiguration(mc => { mc.AddProfile(new MappingProfile()); });
+        var mapperConfig = new MapperConfiguration(mc =>
+        {
+            mc.AddProfile(new MinoriaBackend.Api.Mappers.MappingProfile());
+            mc.AddProfile(new MinoriaBackend.Data.Mappers.MappingProfile());
+        });
         var mapper = mapperConfig.CreateMapper();
         services.AddSingleton(mapper);
     }
